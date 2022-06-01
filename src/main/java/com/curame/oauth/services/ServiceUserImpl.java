@@ -39,10 +39,11 @@ public class ServiceUserImpl implements IServiceUser, UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         try {
             User user = client.findByUsername(s);
-
+            log.info("Usuario autenticado " + user.getUsername());
+            user.getRoles().stream().forEach(role -> System.out.print(role.getRoleName()));
             List<GrantedAuthority> authorities = user.getRoles()
                     .stream().map(role -> {
-                        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getName());
+                        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRoleName());
                         return grantedAuthority;
                     })
                     .peek(grantedAuthority -> log.info("Role : " + grantedAuthority.getAuthority()))

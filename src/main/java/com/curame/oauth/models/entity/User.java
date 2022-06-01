@@ -23,7 +23,7 @@ public class User {
     private String lastname;
     private String email;
     private Integer loginTries;
-    private Profile profile;
+    private List<Profile> profiles;
     private List<Role> roles;
 
 }

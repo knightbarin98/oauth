@@ -45,13 +45,15 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     //Se necesita configurar y registrar cada cliente
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        System.out.println(env.getProperty("config.security.oauth.client.id"));
+        System.out.println(env.getProperty("config.security.oauth.client.secret"));
         clients.inMemory()
                 .withClient(env.getProperty("config.security.oauth.client.id"))
                 .secret(passwordEncoder.encode(env.getProperty("config.security.oauth.client.secret")))
                 .scopes("read","write")
                 .authorizedGrantTypes("password","refresh_token")
-                .accessTokenValiditySeconds(3600)
-                .refreshTokenValiditySeconds(7200);
+                .accessTokenValiditySeconds(64800)
+                .refreshTokenValiditySeconds(86400);
     }
 
     //JWT storage

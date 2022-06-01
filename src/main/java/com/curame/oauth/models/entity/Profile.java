@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -14,5 +15,6 @@ import lombok.Setter;
 public class Profile {
 
     private Long id;
-    private String name;
+    private String profileName;
+    private List<User> users;
 }

@@ -28,7 +28,7 @@ public class AuthenticationSuccessErrorHandler implements AuthenticationEventPub
             return;
         }
 
-        UserDetails user = (UserDetails) authentication.getDetails();
+        UserDetails user = (UserDetails) authentication.getPrincipal();
         String message = "SUCCESS LOG IN: " + user.getUsername();
         log.info(message);
 

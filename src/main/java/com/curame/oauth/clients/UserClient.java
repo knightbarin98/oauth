@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name = "servicio-usuarios")
 public interface UserClient {
-    @GetMapping("/users/search/search-username")
+    @GetMapping("/users/search-username")
     public User findByUsername(@RequestParam("username") String username);
 
     @PutMapping("/users/{id}")
-    public User update(@RequestBody User user, Long id);
+    public User update(@RequestBody User user, @RequestParam Long id);
 }
